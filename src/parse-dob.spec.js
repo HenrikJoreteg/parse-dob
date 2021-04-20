@@ -42,6 +42,7 @@ const invalid = [
   ['blah', null],
   ['198', null],
   ['23423423', null],
+  ['dec 29, 9', null],
   ['june june', null],
   ['june garbage', null],
 

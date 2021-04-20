@@ -40,6 +40,7 @@ npm test
 
 ## Change log
 
+- `1.0.0`: Considered stable. In use in app.
 - `0.0.4`: Prevent future dates of any kind
 - `0.0.3`: Better handling of bad input.
 - `0.0.2`: Fixed handling of empty input. Improved JS doc for export.

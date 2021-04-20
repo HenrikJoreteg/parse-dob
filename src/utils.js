@@ -197,10 +197,7 @@ export const getParts = str => {
     if (split.length === 3) {
       const ordersToTry =
         monthIndex === 0
-          ? [
-              ['date', 'year'],
-              ['year', 'date'],
-            ]
+          ? [['date', 'year']]
           : [
               ['year', 'date'],
               ['date', 'year'],
