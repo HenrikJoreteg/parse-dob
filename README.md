@@ -40,6 +40,7 @@ npm test
 
 ## Change log
 
+- `1.0.2`: Require 3 letters for written months to minimize false positives.
 - `1.0.1`: JS Doc fix.
 - `1.0.0`: Considered stable. In use in app.
 - `0.0.4`: Prevent future dates of any kind

@@ -7,17 +7,17 @@ const extractNumbers = str => {
 
 const months = {
   jan: '01',
-  f: '02',
+  feb: '02',
   mar: '03',
-  ap: '04',
+  apr: '04',
   may: '05',
   jun: '06',
   jul: '07',
-  au: '08',
-  s: '09',
-  o: '10',
-  n: '11',
-  d: '12',
+  aug: '08',
+  sep: '09',
+  oct: '10',
+  nov: '11',
+  dec: '12',
 }
 
 const clean = str =>
