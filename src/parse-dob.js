@@ -7,7 +7,7 @@ import { testOrder, getCombosToTry, getParts, finalOutput } from './utils.js'
  * @param {string} dateOfBirth In unknown format
  * @param {string} [locale] If you want to use a specific locale you can, but
  *   generally this won't be necessary it will default to environment's locale.
- * @returns {string} In format YYYY or YYYY-MM or YYYY-MM-DD
+ * @returns {string | null} In format YYYY or YYYY-MM or YYYY-MM-DD
  */
 export default (dobString, locale) => {
   if (!dobString) return null

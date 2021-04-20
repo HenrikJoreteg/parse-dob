@@ -40,6 +40,7 @@ npm test
 
 ## Change log
 
+- `1.0.1`: JS Doc fix.
 - `1.0.0`: Considered stable. In use in app.
 - `0.0.4`: Prevent future dates of any kind
 - `0.0.3`: Better handling of bad input.
