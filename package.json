@@ -1,0 +1,57 @@
+{
+  "name": "parse-dob",
+  "description": "Turn a wide range of freeform inputs describing someone's birth date into `YYYY-MM-DD` using locale to get proper day / month order.",
+  "version": "0.0.0",
+  "author": "Henrik Joreteg <henrik@joreteg.com>",
+  "bugs": {
+    "url": "https://github.com/henrikjoreteg/parse-dob"
+  },
+  "devDependencies": {
+    "eslint": "7.19.0",
+    "eslint-plugin-jsdoc": "32.2.0",
+    "esm": "3.2.25",
+    "fixpack": "4.0.0",
+    "milliseconds": "1.0.3",
+    "prettier": "2.2.1",
+    "prettier-plugin-jsdoc": "0.3.13",
+    "rollup": "2.41.1",
+    "tap-spec": "5.0.0",
+    "tape": "5.1.1"
+  },
+  "exports": {
+    "import": "./src/parse-dob.js",
+    "require": "./dist/index.js"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "homepage": "https://github.com/henrikjoreteg/parse-dob",
+  "keywords": [
+    "date of birth",
+    "dates"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./src/parse-dob.js",
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "arrowParens": "avoid",
+    "jsdocParser": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/henrikjoreteg/parse-dob.git"
+  },
+  "scripts": {
+    "build": "rollup src/parse-dob --file dist/index.js --format cjs",
+    "ci": "npm run static && npm test",
+    "format": "prettier --write .",
+    "lint": "eslint ./src .",
+    "prepublishOnly": "npm run ci && npm run build",
+    "static": "fixpack && npm run format && npm run lint",
+    "test": "tape -r esm src/**/*.spec.js | tap-spec"
+  }
+}
