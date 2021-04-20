@@ -1,4 +1,4 @@
-import { testOrder, getCombosToTry, getParts, toISO } from './utils.js'
+import { testOrder, getCombosToTry, getParts, finalOutput } from './utils.js'
 
 /**
  * This function turns a wide range of freeform input describing someone's birth
@@ -14,7 +14,7 @@ export default (dobString, locale) => {
 
   const { knownOrder, parts } = getParts(dobString.trim())
   if (knownOrder) {
-    return toISO(knownOrder)
+    return finalOutput(knownOrder)
   }
 
   const combosToTry = getCombosToTry(locale)[parts.length]
@@ -23,7 +23,7 @@ export default (dobString, locale) => {
   for (let i = 0, l = combosToTry.length; i < l; i++) {
     const res = testOrder(combosToTry[i], parts)
     if (res) {
-      return toISO(res)
+      return finalOutput(res)
     }
   }
   return null

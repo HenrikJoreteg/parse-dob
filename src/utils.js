@@ -28,6 +28,23 @@ const clean = str =>
     .trim()
     .toLowerCase()
 
+const isInFuture = ({ year, month, date }) => {
+  const d = new Date()
+  d.setHours(12)
+  const currentYear = d.getFullYear()
+  if (year !== currentYear) {
+    return year > currentYear
+  }
+  const currentMonth = d.getMonth() + 1
+  // year is the same
+  if (month !== currentMonth) {
+    return month > currentMonth
+  }
+  // month is the same too
+  const currentDate = d.getDate()
+  return date > currentDate
+}
+
 const parseFns = {
   month: str => {
     if (!str) {
@@ -61,7 +78,6 @@ const parseFns = {
     if (num > minYear && num <= maxYear) {
       return num
     }
-
     // guess year based on current date
     // assume < 100 years old
     if (str.length === 2) {
@@ -136,6 +152,8 @@ export const toISO = ({ year, month, date }) => {
   return res
 }
 
+export const finalOutput = values => (isInFuture(values) ? null : toISO(values))
+
 export const testOrder = (order, parts) => {
   const result = {}
   for (let i = 0, l = order.length; i < l; i++) {
@@ -177,10 +195,25 @@ export const getParts = str => {
     }
 
     if (split.length === 3) {
+      const ordersToTry =
+        monthIndex === 0
+          ? [
+              ['date', 'year'],
+              ['year', 'date'],
+            ]
+          : [
+              ['year', 'date'],
+              ['date', 'year'],
+            ]
+      // console.l
       result.knownOrder = Object.assign(
         { month: monthValue },
-        testOrder(['year', 'date'], otherParts) ||
-          testOrder(['date', 'year'], otherParts)
+        ordersToTry.reduce((res, order) => {
+          if (res) {
+            return res
+          }
+          return testOrder(order, otherParts)
+        }, null)
       )
       return result
     }

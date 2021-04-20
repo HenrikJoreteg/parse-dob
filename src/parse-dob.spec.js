@@ -1,6 +1,7 @@
 import test from 'tape'
 import parseDob from './parse-dob.js'
 import getForAllLocales from './locales.js'
+import { toISO } from './utils.js'
 
 const valid = [
   ['1982', '1982'],
@@ -19,6 +20,20 @@ const valid = [
   ['june 14', '2014-06'],
   ['10 jul 1998', '1998-07-10'],
   ['jul 1 1998', '1998-07-01'],
+  ['dec 18, 28', '1928-12-18'],
+  [
+    // today should be today
+    toISO({
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      date: new Date().getDate(),
+    }),
+    toISO({
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      date: new Date().getDate(),
+    }),
+  ],
 ]
 
 const invalid = [
@@ -29,6 +44,16 @@ const invalid = [
   ['23423423', null],
   ['june june', null],
   ['june garbage', null],
+
+  [
+    // tomorrow should fail
+    toISO({
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      date: new Date().getDate() + 1,
+    }),
+    null,
+  ],
 ]
 
 test('parseDob', t => {
