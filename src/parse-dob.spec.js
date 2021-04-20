@@ -23,6 +23,8 @@ const valid = [
 
 const invalid = [
   ['', null],
+  ['b', null],
+  ['blah', null],
   ['198', null],
   ['23423423', null],
   ['june june', null],

@@ -18,6 +18,7 @@ export default (dobString, locale) => {
   }
 
   const combosToTry = getCombosToTry(locale)[parts.length]
+  if (!combosToTry) return null
 
   for (let i = 0, l = combosToTry.length; i < l; i++) {
     const res = testOrder(combosToTry[i], parts)

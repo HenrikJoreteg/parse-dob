@@ -40,6 +40,7 @@ npm test
 
 ## Change log
 
+- `0.0.3`: Better handling of bad input.
 - `0.0.2`: Fixed handling of empty input. Improved JS doc for export.
 - `0.0.1`: First public release.
 
