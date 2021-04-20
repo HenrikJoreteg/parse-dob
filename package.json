@@ -1,7 +1,7 @@
 {
   "name": "parse-dob",
   "description": "Turn a wide range of freeform inputs describing someone's birth date into `YYYY-MM-DD` using locale to get proper day / month order.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Henrik Joreteg <henrik@joreteg.com>",
   "bugs": {
     "url": "https://github.com/henrikjoreteg/parse-dob"
