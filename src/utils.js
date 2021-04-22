@@ -136,7 +136,10 @@ const getLocaleOrder = locale => {
 
 export const getCombosToTry = memo(locale => ({
   1: [['year']],
-  2: [['year', 'month']],
+  2: [
+    ['year', 'month'],
+    ['month', 'year'],
+  ],
   3: getLocaleOrder(locale),
 }))
 

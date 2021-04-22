@@ -2,7 +2,8 @@ import { testOrder, getCombosToTry, getParts, finalOutput } from './utils.js'
 
 /**
  * This function turns a wide range of freeform input describing someone's birth
- * date into `YYYY-MM-DD` using environment's locale to get proper day / month order.
+ * date into `YYYY-MM-DD` or `YYYY-MM` or `YYYY` using environment's locale to
+ * get proper day / month order.
  *
  * @param {string} dateOfBirth In unknown format
  * @param {string} [locale] If you want to use a specific locale you can, but
