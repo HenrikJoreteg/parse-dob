@@ -8,7 +8,7 @@ It's specific to birth dates because it makes some assumptions that you're < 100
 
 This is meant for allowing a user to "free form" type a date of birth into in input field, and be able to make it into a format the backend can understand.
 
-It always outputs `"YYYY"`, `"YYYY-MM"`, `"YYYY-MM-DD"`, or `"null"`
+It always outputs `"YYYY"`, `"YYYY-MM"`, `"YYYY-MM-DD"`, or `null`
 
 It's often difficult to deal wth order of month and dates. Different locales will write the same date as either `1/2/2010` or `2/1/2010`.
 
@@ -40,6 +40,7 @@ npm test
 
 ## Change log
 
+- `1.0.3`: Added fix for bug with two numbers as input. `12 29` is now `1929-12`.
 - `1.0.2`: Require 3 letters for written months to minimize false positives.
 - `1.0.1`: JS Doc fix.
 - `1.0.0`: Considered stable. In use in app.
