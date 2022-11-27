@@ -4,6 +4,11 @@ import getForAllLocales from './locales.js'
 import { toISO } from './utils.js'
 
 const valid = [
+  ['122982', '1982-12-29'],
+  ['291282', '1982-12-29'],
+  ['29121982', '1982-12-29'],
+  ['12291982', '1982-12-29'],
+  ['010182', '1982-01-01'],
   ['1982', '1982'],
   ['1982-3', '1982-03'],
   ['12/29/82', '1982-12-29'],
@@ -47,6 +52,7 @@ const invalid = [
   ['dec 29, 9', null],
   ['june june', null],
   ['june garbage', null],
+  ['13291982', null],
 
   [
     // tomorrow should fail

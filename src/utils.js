@@ -28,6 +28,9 @@ const clean = str =>
     .trim()
     .toLowerCase()
 
+const mightBeComplete = str =>
+  /^[0-9]+$/g.test(str) && (str.length === 6 || str.length === 8)
+
 const isInFuture = ({ year, month, date }) => {
   const d = new Date()
   d.setHours(12)
@@ -180,6 +183,21 @@ export const getParts = str => {
     knownOrder: null,
   }
 
+  // just numbers of 6 of 8 chars
+  if (mightBeComplete(cleaned)) {
+    result.parts = [cleaned.slice(0, 2), cleaned.slice(2, 4), cleaned.slice(4)]
+    const ordersToTry = [
+      ['month', 'date', 'year'],
+      ['date', 'month', 'year'],
+    ]
+    result.knownOrder = ordersToTry.reduce((res, order) => {
+      if (res) {
+        return res
+      }
+      return testOrder(order, result.parts)
+    }, null)
+    return result
+  }
   if (containsLetters(cleaned)) {
     const monthIndex = split.findIndex(containsLetters)
     const monthValue = parseFns.month(split[monthIndex])
@@ -205,7 +223,6 @@ export const getParts = str => {
               ['year', 'date'],
               ['date', 'year'],
             ]
-      // console.l
       result.knownOrder = Object.assign(
         { month: monthValue },
         ordersToTry.reduce((res, order) => {
