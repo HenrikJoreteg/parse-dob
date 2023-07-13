@@ -5,7 +5,7 @@ import { testOrder, getCombosToTry, getParts, finalOutput } from './utils.js'
  * date into `YYYY-MM-DD` or `YYYY-MM` or `YYYY` using environment's locale to
  * get proper day / month order.
  *
- * @param {string} dateOfBirth In unknown format
+ * @param {string} dobString In unknown format
  * @param {string} [locale] If you want to use a specific locale you can, but
  *   generally this won't be necessary it will default to environment's locale.
  * @returns {string | null} In format YYYY or YYYY-MM or YYYY-MM-DD
