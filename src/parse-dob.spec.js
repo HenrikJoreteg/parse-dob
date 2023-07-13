@@ -101,8 +101,8 @@ test('parseDob various locales', t => {
         console.log(
           `locale: ${locale} with input: ${input} should be ${output} actual value was ${value}`
         )
-        // eslint-disable-next-line no-undef
-        process.exit(1)
+        // @ts-ignore
+        process.exit(1) // eslint-disable-line no-undef
       }
     })
 
