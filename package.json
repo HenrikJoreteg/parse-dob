@@ -15,7 +15,6 @@
     "prettier": "2.2.1",
     "prettier-plugin-jsdoc": "0.3.13",
     "rollup": "2.41.1",
-    "tap-spec": "5.0.0",
     "tape": "5.1.1",
     "typescript": "^5.1.6"
   },
@@ -53,7 +52,7 @@
     "lint": "eslint ./src .",
     "prepublishOnly": "npm run ci && npm run build",
     "static": "fixpack && npm run format && npm run lint && npm run tsc",
-    "test": "tape -r esm src/**/*.spec.js | tap-spec",
+    "test": "tape -r esm src/**/*.spec.js",
     "tsc": "tsc -p ."
   }
 }
