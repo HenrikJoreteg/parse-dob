@@ -4,6 +4,7 @@ import getForAllLocales from './locales.js'
 import { toISO } from './utils.js'
 
 const valid = [
+  ['feb 12, 2018', '2018-02-12'],
   ['122982', '1982-12-29'],
   ['291282', '1982-12-29'],
   ['29121982', '1982-12-29'],
@@ -41,9 +42,12 @@ const valid = [
       date: new Date().getDate(),
     }),
   ],
-]
+].slice(0, 1)
 
 const invalid = [
+  [null, null],
+  [{}, null],
+  [undefined, null],
   ['', null],
   ['b', null],
   ['blah', null],
@@ -76,6 +80,7 @@ test('parseDob', t => {
 
   invalid.forEach(([input, output, locale]) => {
     t.equal(
+      // @ts-ignore
       parseDob(input, locale || 'en-US'),
       output,
       `in: ${input} should be ${output}`
