@@ -40,6 +40,8 @@ npm test
 
 ## Change log
 
+- `1.1.2`: Updated to always return `null` for non-string inputs
+- `1.1.1`: Updated to support just numbers as a string.
 - `1.0.3`: Added fix for bug with two numbers as input. `12 29` is now `1929-12`.
 - `1.0.2`: Require 3 letters for written months to minimize false positives.
 - `1.0.1`: JS Doc fix.

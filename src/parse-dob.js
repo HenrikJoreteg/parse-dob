@@ -11,7 +11,7 @@ import { testOrder, getCombosToTry, getParts, finalOutput } from './utils.js'
  * @returns {string | null} In format YYYY or YYYY-MM or YYYY-MM-DD
  */
 export default (dobString, locale) => {
-  if (!dobString) return null
+  if (!dobString || typeof dobString !== 'string') return null
 
   const { knownOrder, parts } = getParts(dobString.trim())
   if (knownOrder) {
