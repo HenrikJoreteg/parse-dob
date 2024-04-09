@@ -8,8 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: henrikjoreteg/version-compare@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
   tests:
     runs-on: ubuntu:latest
     steps:
