@@ -13,7 +13,7 @@ import { testOrder, getCombosToTry, getParts, finalOutput } from './utils.js'
 export default (dobString, locale) => {
   if (!dobString || typeof dobString !== 'string') return null
 
-  const { knownOrder, parts } = getParts(dobString.trim())
+  const { knownOrder, parts } = getParts(dobString.trim(), locale)
   if (knownOrder) {
     return finalOutput(knownOrder)
   }

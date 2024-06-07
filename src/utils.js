@@ -122,9 +122,6 @@ const memo = fn => {
   }
 }
 
-const arraysEqual = (a, b) => a.every((item, index) => b[index] === item)
-
-const standardOrder = ['year', 'month', 'date']
 const getLocaleOrder = locale => {
   const dateString = clean(new Date(2021, 3, 5).toLocaleDateString(locale))
   const res = [
@@ -133,8 +130,7 @@ const getLocaleOrder = locale => {
     { name: 'date', index: dateString.indexOf('5') },
   ]
   res.sort((a, b) => a.index - b.index)
-  const names = res.map(item => item.name)
-  return arraysEqual(names, standardOrder) ? [names] : [names, standardOrder]
+  return res.map(item => item.name)
 }
 
 export const getCombosToTry = memo(locale => ({
@@ -143,7 +139,11 @@ export const getCombosToTry = memo(locale => ({
     ['year', 'month'],
     ['month', 'year'],
   ],
-  3: getLocaleOrder(locale),
+  3: [
+    getLocaleOrder(locale),
+    ['year', 'month', 'date'],
+    ['date', 'month', 'year'],
+  ],
 }))
 
 export const toISO = ({ year, month, date }) => {
@@ -174,9 +174,14 @@ export const testOrder = (order, parts) => {
   return result
 }
 
-export const getParts = str => {
+/**
+ * @param {string} str
+ * @param {string} [locale]
+ */
+export const getParts = (str, locale) => {
   const cleaned = clean(str)
   const split = cleaned.split(/\s+/).filter(Boolean)
+  const localeOrder = getLocaleOrder(locale)
 
   const result = {
     parts: [],
@@ -187,6 +192,7 @@ export const getParts = str => {
   if (mightBeComplete(cleaned)) {
     result.parts = [cleaned.slice(0, 2), cleaned.slice(2, 4), cleaned.slice(4)]
     const ordersToTry = [
+      localeOrder,
       ['month', 'date', 'year'],
       ['date', 'month', 'year'],
     ]
@@ -216,13 +222,7 @@ export const getParts = str => {
     }
 
     if (split.length === 3) {
-      const ordersToTry =
-        monthIndex === 0
-          ? [['date', 'year']]
-          : [
-              ['year', 'date'],
-              ['date', 'year'],
-            ]
+      const ordersToTry = [localeOrder.filter(item => item !== 'month')]
       result.knownOrder = Object.assign(
         { month: monthValue },
         ordersToTry.reduce((res, order) => {

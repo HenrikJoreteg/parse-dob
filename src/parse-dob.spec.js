@@ -7,12 +7,16 @@ const valid = [
   ['feb 12, 2018', '2018-02-12'],
   ['122982', '1982-12-29'],
   ['291282', '1982-12-29'],
+  ['291282', '1982-12-29', 'en-AU'],
+  ['291282', '1982-12-29', 'en-CA'],
   ['29121982', '1982-12-29'],
   ['12291982', '1982-12-29'],
   ['010182', '1982-01-01'],
   ['1982', '1982'],
   ['1982-3', '1982-03'],
   ['12/29/82', '1982-12-29'],
+  ['10/11/82', '1982-10-11'],
+  ['10/11/82', '1982-11-10', 'en-AU'],
   ['December 8, 1982', '1982-12-08'],
   ['febbrura 7, 45', '1945-02-07'],
   ['2010-02-01', '2010-02-01'],
@@ -21,6 +25,8 @@ const valid = [
   ['jun 7th, 2002', '2002-06-07'],
   ['10 jun 2020', '2020-06-10'],
   ['1 12 2020', '2020-01-12'],
+  ['1 12 2020', '2020-12-01', 'en-AU'],
+  ['1 12 2020', '2020-12-01', 'en-CA'],
   ['2021-01-12', '2021-01-12', 'af-ZA'],
   ['jun 2,08', '2008-06-02'],
   ['june 14', '2014-06'],
@@ -29,6 +35,11 @@ const valid = [
   ['dec 18, 28', '1928-12-18'],
   ['12, 29', '1929-12'],
   ['29 dec', '1929-12'],
+  // special cases
+  ['20 dec 23', '2023-12-20'],
+  ['20 dec 23', '2023-12-20', 'en-US'],
+  ['20 dec 23', '2020-12-23', 'en-CA'], // canada puts years first by default
+  ['20 dec 23', '2023-12-20', 'en-AU'],
   [
     // today should be today
     toISO({
@@ -42,7 +53,7 @@ const valid = [
       date: new Date().getDate(),
     }),
   ],
-].slice(0, 1)
+]
 
 const invalid = [
   [null, null],
@@ -89,7 +100,7 @@ test('parseDob', t => {
   t.end()
 })
 
-test('parseDob various locales', t => {
+test('parseDob various locales when starting with yyyy-mm-dd', t => {
   const startingDate = new Date()
   startingDate.setFullYear(startingDate.getFullYear() - 100)
 
