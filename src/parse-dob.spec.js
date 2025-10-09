@@ -85,7 +85,7 @@ const invalid = [
   ],
   ['2055', null], // future year
   ['2020-13', null], // invalid month
-  ['2019-29-02', null], // invalid leap day
+  ['2019-02-29', null], // invalid leap day
   ['2019-01-32', null], // invalid day
   ['2019-04-31', null], // invalid day
   ['2020-00', null], // invalid month
