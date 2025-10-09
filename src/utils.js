@@ -48,6 +48,28 @@ const isInFuture = ({ year, month, date }) => {
   return date > currentDate
 }
 
+const isInvalidDate = ({ year, month, date }) => {
+  if ((month && (month < 1 || month > 12)) || date < 1) return true
+
+  const isLeapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
+  const daysInMonth = [
+    31,
+    isLeapYear ? 29 : 28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31,
+  ]
+
+  return date > daysInMonth[month - 1]
+}
+
 const parseFns = {
   month: str => {
     if (!str) {
@@ -158,7 +180,8 @@ export const toISO = ({ year, month, date }) => {
   return res
 }
 
-export const finalOutput = values => (isInFuture(values) ? null : toISO(values))
+export const finalOutput = values =>
+  isInFuture(values) || isInvalidDate(values) ? null : toISO(values)
 
 export const testOrder = (order, parts) => {
   const result = {}

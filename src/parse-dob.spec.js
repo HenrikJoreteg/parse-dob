@@ -53,6 +53,10 @@ const valid = [
       date: new Date().getDate(),
     }),
   ],
+  ['2020', '2020'],
+  ['2020-05', '2020-05'],
+  // valid leap day
+  ['2020-02-29', '2020-02-29'],
 ]
 
 const invalid = [
@@ -68,7 +72,8 @@ const invalid = [
   ['june june', null],
   ['june garbage', null],
   ['13291982', null],
-
+  ['1985-09-31', null], // September has only 30 days
+  ['sept. 31, 2018', null],
   [
     // tomorrow should fail
     toISO({
@@ -78,6 +83,15 @@ const invalid = [
     }),
     null,
   ],
+  ['2055', null], // future year
+  ['2020-13', null], // invalid month
+  ['2019-29-02', null], // invalid leap day
+  ['2019-01-32', null], // invalid day
+  ['2019-04-31', null], // invalid day
+  ['2020-00', null], // invalid month
+  ['2020-00-12', null], // invalid month
+  ['2020-12-00', null], // invalid day
+  ['2020-11-31', null], // invalid day
 ]
 
 test('parseDob', t => {

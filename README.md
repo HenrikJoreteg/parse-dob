@@ -40,6 +40,7 @@ npm test
 
 ## Change log
 
+- `1.1.4`: Updated to confirm invalid dates like `2020-9-31` don't work (only 30 days in sept).
 - `1.1.3`: Better handling of locales where year is default first like CA.
 - `1.1.2`: Updated to always return `null` for non-string inputs
 - `1.1.1`: Updated to support just numbers as a string.
