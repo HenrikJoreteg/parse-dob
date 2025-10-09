@@ -49,6 +49,14 @@ const isInFuture = ({ year, month, date }) => {
 }
 
 const isInvalidDate = ({ year, month, date }) => {
+  const hasMonth = month != null
+  const hasDate = date != null
+  const hasYear = year != null
+
+  if (hasYear && !hasMonth && !hasDate) return false
+  if (hasYear && hasMonth && !hasDate) return false
+  if (!hasYear) return true
+  // we know it has all 3 here
   if ((month && (month < 1 || month > 12)) || date < 1) return true
 
   const isLeapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
